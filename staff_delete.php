@@ -33,17 +33,12 @@
 	}
 
 	?>
-	<p>スタッフを修正する</p><br>
+	<p>スタッフを削除する</p>
+	<p>スタッフ名:<?php print $staff_name ?></p>
 	<p>スタッフコード</p>
 	<?php print $staff_code; ?>
-	<form method="post" action="staff_edit_check.php">
+	<form method="post" action="staff_delete_done.php">
 		<input type="hidden" name="code" value="<?php print $staff_code; ?>">
-		<label for="edit-staff">スタッフ名</label>
-		<input type="text" name="name" style="width: 200px;" id="edit-staff" value="<?php print $staff_name; ?>"><br>
-		<label for="edit-pass">パスワードを入力して下さい。</label><br>
-		<input type="password" name="pass" style="width: 100px;" id="edit-pass"><br>
-		<label for="edit-pass">パスワードをもう一度入力して下さい。</label><br>
-		<input type="password" name="pass2" style="width: 100px;" id="edit-pass2"><br>
 		<input type="button" onclick="history.back()" value="戻る">
 		<button type="submit">OK</button>
 	</form>

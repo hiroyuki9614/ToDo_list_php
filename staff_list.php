@@ -30,7 +30,7 @@
 			if ($rec == false) {
 				break;
 			}
-			print '<input type="radio" name="staffcode" value=""' . $rec['code'] . '" >';
+			print '<input type="radio" name="staffcode" value="' . $rec['code'] . '" >';
 			print $rec['name'];
 			print '<br>';
 		}
