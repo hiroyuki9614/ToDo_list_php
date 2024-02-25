@@ -16,22 +16,23 @@
 		$dbh = new PDO($dsn, $user, $password);
 		$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		$sql = 'SELECT code,name FROM mst_staff WHERE 1';
+		$sql = 'SELECT code,name,price FROM mst_product WHERE 1';
 		$stmt = $dbh->prepare($sql);
 		$stmt->execute();
 
 		$dbh = null;
 
-		print '<p>スタッフ一覧</p>';
+		print '<p>商品一覧</p>';
 
-		print '<form method="post" action="staff_branch.php">';
+		print '<form method="post" action="pro_branch.php">';
 		while (true) {
 			$rec = $stmt->fetch(PDO::FETCH_ASSOC);
 			if ($rec == false) {
 				break;
 			}
-			print '<input type="radio" name="staffcode" value="' . $rec['code'] . '" >';
-			print $rec['name'];
+			print '<input type="radio" name="procode" value="' . $rec['code'] . '" >';
+			print $rec['name'] . '---';
+			print $rec['price'] . '円';
 			print '<br>';
 		}
 		print '<button type="submit" name="disp">参照</button>';
