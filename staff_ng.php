@@ -8,5 +8,5 @@
 
 <body>
 	<p>スタッフが選択されていません。</p>
-	<a href="pro_list.php">戻る</a>
+	<a href="staff_list.php">戻る</a>
 </body>

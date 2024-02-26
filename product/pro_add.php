@@ -2,26 +2,22 @@
 <html>
 
 <head>
-	<meta charset="UTF-8">
-	<title>ろくまる農園</title>
+	<meta charset="utf-8" />
+	<title>茶葉の園</title>
 </head>
 
 <body>
-
-	商品追加<br />
-	<br />
+	<p>商品追加</p>
 	<form method="post" action="pro_add_check.php" enctype="multipart/form-data">
-		商品名を入力してください。<br />
-		<input type="text" name="name" style="width:200px"><br />
-		価格を入力してください。<br />
-		<input type="text" name="price" style="width:50px"><br />
-		画像を選んでください。<br />
-		<input type="file" name="gazou" style="width:400px"><br />
-		<br />
+		<label for="pro_name">商品名を入力して下さい。</label><br>
+		<input type="text" name="name" id="pro_name" style="width: 200px;"><br>
+		<label for="pro_price">価格を入力して下さい。</label><br>
+		<input type="text" name="price" id="pro_price" style="width: 50px;"><br>
+		<label for="pro_price">画像を選んで下さい。</label><br>
+		<input type="file" name="gazou" id="img" style="width: 400px;"><br>
 		<input type="button" onclick="history.back()" value="戻る">
-		<input type="submit" value="ＯＫ">
+		<button type="submit">OK</button>
 	</form>
-
 </body>
 
 </html>
