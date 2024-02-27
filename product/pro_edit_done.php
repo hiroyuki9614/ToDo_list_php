@@ -10,6 +10,7 @@
 	<?php
 
 	try {
+		$pro_code = $_POST['code'];
 		$pro_name = $_POST['name'];
 		$pro_price = $_POST['price'];
 		$pro_gazou_name = $_POST['gazou_name'];
@@ -23,7 +24,7 @@
 		$dbh = new PDO($dsn, $user, $password);
 		$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		$sql = 'UPDATE mst_product SET name=?,price=?, gazou=? WHERE code=?';
+		$sql = 'UPDATE mst_product SET name=?,price=?,gazou=? WHERE code=?';
 		$stmt = $dbh->prepare($sql);
 		$data[] = $pro_name;
 		$data[] = $pro_price;
@@ -37,7 +38,11 @@
 		exit();
 	}
 
+	if ($pro_gazou_name_old != '') {
+		unlink('./gazou/' . $pro_gazou_name_old);
+	}
 	?>
+
 	<p>修正しました。</p>
 	<?php print $pro_name ?>
 	<?php print $pro_code ?>

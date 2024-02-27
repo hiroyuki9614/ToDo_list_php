@@ -44,13 +44,14 @@
 	<p>商品を修正する</p><br>
 	<p>商品コード</p>
 	<?php print $pro_code; ?><br>
-	<form method="post" action="pro_edit_check.php">
+	<form method="post" action="pro_edit_check.php" enctype="multipart/form-data">
 		<input type="hidden" name="code" value="<?php print $pro_code; ?>">
 		<label for="edit-pro">商品名</label>
 		<input type="text" name="name" style="width: 200px;" id="edit-name" value="<?php print $pro_name; ?>"><br>
 		<label for="edit-name">価格</label>
-		<input type="text" name="name" style="width: 200px;" id="edit-price" value="<?php print $pro_price; ?>"><br>
+		<input type="text" name="price" style="width: 200px;" id="edit-price" value="<?php print $pro_price; ?>"><br>
 		<?php print $disp_gazou; ?><br>
+		<input type="hidden" name="gazou_name_old" value="<?php print $pro_gazou_name_old; ?>">
 		<label for="edit-img">画像を選択して下さい。</label>
 		<input type="file" name="gazou" id="edit-img" style="width: 400px;"><br>
 		<input type="button" onclick="history.back()" value="戻る">

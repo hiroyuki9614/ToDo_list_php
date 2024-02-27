@@ -27,6 +27,7 @@
 
 	if (preg_match('/\A[0-9]+\z/', $pro_price) == 0) {
 		print '価格をきちんと入力してください。<br />';
+		print $pro_price;
 	} else {
 		print '価格:';
 		print $pro_price;
@@ -40,6 +41,7 @@
 			move_uploaded_file($pro_gazou['tmp_name'], './gazou/' . $pro_gazou['name']);
 			print '<img src="./gazou/' . $pro_gazou['name'] . '">';
 			print '<br />';
+			print 'ssss';
 		}
 	}
 
@@ -49,7 +51,8 @@
 		print '</form>';
 	} else {
 		print '上記の商品を追加します。<br />';
-		print '<form method="post" action="pro_add_done.php">';
+		print '<form method="post" action="pro_edit_done.php">';
+		print '<input type="hidden" name="code" value="' . $pro_code . '">';
 		print '<input type="hidden" name="name" value="' . $pro_name . '">';
 		print '<input type="hidden" name="price" value="' . $pro_price . '">';
 		print '<input type="hidden" name="gazou_name_old" value="' . $pro_gazou_name_old . '">';
