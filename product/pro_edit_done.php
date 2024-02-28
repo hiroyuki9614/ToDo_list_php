@@ -33,14 +33,18 @@
 		$stmt->execute($data);
 
 		$dbh = null;
+
+		if ($pro_gazou_name_old != $pro_gazou_name) {
+			if ($pro_gazou_name_old != '') {
+				unlink('./gazou/' . $pro_gazou_name_old);
+			}
+		}
 	} catch (Exception $e) {
 		print 'ただいま障害により大変ご迷惑をお掛けしております。';
 		exit();
 	}
 
-	if ($pro_gazou_name_old != '') {
-		unlink('./gazou/' . $pro_gazou_name_old);
-	}
+
 	?>
 
 	<p>修正しました。</p>
