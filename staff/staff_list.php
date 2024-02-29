@@ -40,7 +40,9 @@
 		print '<button type="submit" name="delete">削除</button>';
 		print '</form>';
 	} catch (Exception $e) {
-		print '<p>ただいま障害により大変ご迷惑をお掛けしております。</p>';
+		print 'ただいま障害により大変ご迷惑をお掛けしております。<br>';
+		print $e . '<br>';
+		print $e->getMessage();
 		exit();
 	}
 	?>

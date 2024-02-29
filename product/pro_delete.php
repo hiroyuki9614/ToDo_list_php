@@ -34,7 +34,9 @@
 			$disp_gazou = '<img src="./gazou/' . $pro_gazou_name . '">';
 		}
 	} catch (Exception $e) {
-		print 'ただいま障害により大変ご迷惑をお掛けしております。';
+		print 'ただいま障害により大変ご迷惑をお掛けしております。<br>';
+		print $e . '<br>';
+		print $e->getMessage();
 		exit();
 	}
 

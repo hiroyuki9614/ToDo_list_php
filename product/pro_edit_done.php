@@ -40,7 +40,9 @@
 			}
 		}
 	} catch (Exception $e) {
-		print 'ただいま障害により大変ご迷惑をお掛けしております。';
+		print 'ただいま障害により大変ご迷惑をお掛けしております。<br>';
+		print $e . '<br>';
+		print $e->getMessage();
 		exit();
 	}
 
