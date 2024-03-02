@@ -1,32 +1,33 @@
 <?php
-
 session_start();
 session_regenerate_id(true);
 if (isset($_SESSION['member_login']) == false) {
-	print 'ようこそゲスト様。<br>';
-	print '<a href="member_login.html">会員ログイン</a>';
-	print '<br>';
+	print 'ようこそゲスト様　';
+	print '<a href="member_login.html">会員ログイン</a><br />';
+	print '<br />';
 } else {
 	print 'ようこそ';
 	print $_SESSION['member_name'];
-	print '様  ';
-	print '<a href="member_logout.php">ログアウト</a><br>';
-	print '<br>';
+	print '様　';
+	print '<a href="member_logout.php">ログアウト</a><br />';
+	print '<br />';
 }
-
 ?>
+
 <!DOCTYPE html>
 <html>
 
 <head>
-	<meta charset="utf-8" />
-	<title>茶葉の園</title>
+	<meta charset="UTF-8">
+	<title>ろくまる農園</title>
 </head>
 
 <body>
+
 	<?php
 
 	try {
+
 		$cart = $_SESSION['cart'];
 		$max = count($cart);
 
@@ -37,7 +38,7 @@ if (isset($_SESSION['member_login']) == false) {
 		$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 		foreach ($cart as $key => $val) {
-			$sql = 'SELECT code,name,price,gazou FROM mst_product WHERE code = ?';
+			$sql = 'SELECT code,name,price,gazou FROM mst_product WHERE code=?';
 			$stmt = $dbh->prepare($sql);
 			$data[0] = $val;
 			$stmt->execute($data);
@@ -55,24 +56,27 @@ if (isset($_SESSION['member_login']) == false) {
 		$dbh = null;
 	} catch (Exception $e) {
 		print 'ただいま障害により大変ご迷惑をお掛けしております。';
-		print $e . '<br>';
-		print $e->getMessage();
 		exit();
 	}
 
 	?>
-	<p>カートの中身</p><br>
+
+	カートの中身<br />
+	<br />
 	<?php for ($i = 0; $i < $max; $i++) {
 	?>
 		<?php print $pro_name[$i]; ?>
 		<?php print $pro_gazou[$i]; ?>
-		<?php print $pro_price[$i] . '円'; ?>
-		<?php print '<br>'; ?>
+		<?php print $pro_price[$i]; ?>円
+		<br />
 	<?php
 	}
 	?>
+
 	<form>
 		<input type="button" onclick="history.back()" value="戻る">
 	</form>
 
 </body>
+
+</html>
