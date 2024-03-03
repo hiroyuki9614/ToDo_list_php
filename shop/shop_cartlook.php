@@ -28,6 +28,7 @@ if (isset($_SESSION['member_login']) == false) {
 
 	try {
 		$cart = $_SESSION['cart'];
+		$kazu = $_SESSION['kazu'];
 		$max = count($cart);
 
 		$dsn = 'mysql:dbname=shop;host=localhost;charset=utf8';
@@ -67,11 +68,12 @@ if (isset($_SESSION['member_login']) == false) {
 		<?php print $pro_name[$i]; ?>
 		<?php print $pro_gazou[$i]; ?>
 		<?php print $pro_price[$i] . '円'; ?>
+		<?php print $kazu[$i]; ?>
 		<?php print '<br>'; ?>
 	<?php
 	}
 	?>
-	<form>
+	<form method="post" action="kazu_change.php">
 		<input type="button" onclick="history.back()" value="戻る">
 	</form>
 
