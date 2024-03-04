@@ -89,7 +89,7 @@ if (isset($_SESSION['member_login']) == false) {
 					<td><?php print $pro_name[$i]; ?></td>
 					<td><?php print $pro_gazou[$i]; ?></td>
 					<td><?php print $pro_price[$i] . '円'; ?></td>
-					<td><input type="text" name="kazu<?php print $i; ?>" value="<?php print $kazu[$i]; ?>"></td>
+					<td><input type="text" name="kazu<?php print $i; ?>" value="<?php print $kazu[$i]; ?>" style="width: 50px"></td>
 					<td><?php print $pro_price[$i] * $kazu[$i] . '円'; ?></td>
 					<td><input type="checkbox" name="sakujo<?php print $i ?>"></td>
 				</tr>
@@ -101,5 +101,7 @@ if (isset($_SESSION['member_login']) == false) {
 		<button type="submit">数量変更</button>
 		<input type="button" onclick="history.back()" value="戻る">
 	</form>
+	<br>
+	<a href="shop_form.html">ご購入手続きへ進む</a><br>
 
 </body>
