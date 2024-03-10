@@ -33,8 +33,12 @@ session_regenerate_id(true);
 		print '<p>' . $postal1 . '-' . $postal2 . '</p>';
 		print '<p>' . $address . '</p>';
 		print '<p>' . $tel . '</p>';
+
+		$shopbun = '';
+		$shopbun .= '<p>' . $onamae . '様 \n\n この度はご注文ありがとうございました。 \n</p>';
+		// .= は連結代入演算子
 	} catch (Exception $e) {
-		print 'ただいま障害により大変ご迷惑をお掛けしております。';
+		print '<p>ただいま障害により大変ご迷惑をお掛けしております。</p>';
 		print $e . '<br>';
 		print $e->getMessage();
 		exit();
