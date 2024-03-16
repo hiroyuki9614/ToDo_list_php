@@ -34,9 +34,57 @@ session_regenerate_id(true);
 		print '<p>' . $address . '</p>';
 		print '<p>' . $tel . '</p>';
 
-		$shopbun = '';
-		$shopbun .= '<p>' . $onamae . '様 \n\n この度はご注文ありがとうございました。 \n</p>';
+		$honbun = '';
+		$honbun .= '<p>' . $onamae . '様 \n\n この度はご注文ありがとうございました。 \n</p>';
 		// .= は連結代入演算子
+		$honbun .= "\n";
+		$honbun .= "ご注文商品 \n";
+		$honbun .= "-----------------\n";
+
+		$cart = $_SESSION['cart'];
+		$cart = $_SESSION['kazu'];
+		$max = count($cart);
+
+		$dsn = 'mysql:dbname=shop;host=localhost;charset=utf8';
+		$user = 'root';
+		$password = '';
+		$dbh = new PDO($dsn, $user, $password);
+		$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+		for ($i = 0; $i < $max; $i++) {
+			$sql = 'SELECT name, price FROM mst_product WHERE code = ?';
+			$stmt = $dbh->prepare($sql);
+			$data[0] = $cart[$i];
+			$stmt->execute($data);
+
+			$rec = $stmt->fetch(PDO::FETCH_ASSOC);
+
+			$name = $rec['name'];
+			$price = $rec['price'];
+			$suryo = $kazu[$i];
+			$shokei = $price * $suryo;
+
+			$honbun .= $name . ' ';
+			$honbun .= $price . '円 x';
+			$honbun .= $suryo . '個 =';
+			$honbun .= $shokei . '円 \n';
+		}
+
+		$dbh = null;
+
+		$honbun .= "送料は無料です。 \n";
+		$honbun .= "------------";
+		$honbun .= "\n";
+		$honbun .= "代金は下記の口座にお振込み下さい。";
+		$honbun .= "あああ銀行 あああ支店 普通口座 1234567 \n";
+		$honbun .= "入金の確認が取れ次第、梱包、発送させて頂きます。 \n";
+		$honbun .= "\n";
+		$honbun .= "□□□□□□□□□□□□□□□□□\n";
+		$honbun .= " 令和最新版⚡高品質茶葉";
+		$honbun .= "\n";
+		$honbun .= "ほわほわ県たわた郡1-21-312";
+		$honbun .= "電話番号: 090-xxx-xxxx";
+		$honbun .= "メールアドレス: mmm@vvv.ccc";
 	} catch (Exception $e) {
 		print '<p>ただいま障害により大変ご迷惑をお掛けしております。</p>';
 		print $e . '<br>';
