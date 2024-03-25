@@ -78,7 +78,7 @@ session_regenerate_id(true);
 		$honbun .= "あああ銀行 あああ支店 普通口座 1234567 \n";
 		$honbun .= "入金の確認が取れ次第、梱包、発送させて頂きます。 \n";
 		$honbun .= "\n";
-		$honbun .= "□□□□□□□□□□□□□□□□□\n";
+		$honbun .= "猫マナーーナマ猫猫マナーーナマ猫\n";
 		$honbun .= " 令和最新版⚡高品質茶葉";
 		$honbun .= "\n";
 		$honbun .= "ほわほわ県たわた郡1-21-312";
@@ -86,7 +86,7 @@ session_regenerate_id(true);
 		$honbun .= "電話番号: 090-xxx-xxxx";
 		$honbun .= "\n";
 		$honbun .= "メールアドレス: mmm@vvv.ccc \n";
-		$honbun .= "□□□□□□□□□□□□□□□□□ \n";
+		$honbun .= "猫マナーーナマ猫猫マナーーナマ猫\n";
 
 		print '<br>';
 		print nl2br($honbun);
