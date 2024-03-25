@@ -26,7 +26,6 @@ session_regenerate_id(true);
 		$tel = $post['tel'];
 
 		print $onamae . '様<br>';
-
 		print '<p>ご注文ありがとうございました。</p>';
 		print '<p>' . $email . '宛にメールを送付しました。</p>';
 		print '<p>商品は下記住所に配送されます。</p>';
@@ -41,8 +40,8 @@ session_regenerate_id(true);
 		$honbun .= "ご注文商品 \n";
 		$honbun .= "-----------------\n";
 
-		$cart = $_SESSION['cart'];
-		$cart = $_SESSION['kazu'];
+		$cart[] = $_SESSION['cart'];
+		$kazu[] = $_SESSION['kazu'];
 		$max = count($cart);
 
 		$dsn = 'mysql:dbname=shop;host=localhost;charset=utf8';
@@ -85,6 +84,10 @@ session_regenerate_id(true);
 		$honbun .= "ほわほわ県たわた郡1-21-312";
 		$honbun .= "電話番号: 090-xxx-xxxx";
 		$honbun .= "メールアドレス: mmm@vvv.ccc";
+		$honbun .= "□□□□□□□□□□□□□□□□□\n";
+
+		print '<br>';
+		print $honbun;
 	} catch (Exception $e) {
 		print '<p>ただいま障害により大変ご迷惑をお掛けしております。</p>';
 		print $e . '<br>';

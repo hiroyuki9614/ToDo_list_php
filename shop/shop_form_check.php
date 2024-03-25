@@ -70,7 +70,7 @@
 	}
 
 	if ($okflg == true) {
-		print '<form method="post" action="shop_done.php">';
+		print '<form method="post" action="shop_form_done.php">';
 		print '<input type="hidden" name="onamae" value="' . $onamae . '">';
 		print '<input type="hidden" name="email" value="' . $email . '">';
 		print '<input type="hidden" name="postal1" value="' . $postal1 . '">';
