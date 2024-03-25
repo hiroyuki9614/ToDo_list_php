@@ -34,7 +34,7 @@ session_regenerate_id(true);
 		print '<p>' . $tel . '</p>';
 
 		$honbun = '';
-		$honbun .= '<p>' . $onamae . '様 \n\n この度はご注文ありがとうございました。 \n</p>';
+		$honbun .= '<p>' . $onamae . "様 \n \n この度はご注文ありがとうございました。 \n</p>";
 		// .= は連結代入演算子
 		$honbun .= "\n";
 		$honbun .= "ご注文商品 \n";
@@ -66,7 +66,7 @@ session_regenerate_id(true);
 			$honbun .= $name . ' ';
 			$honbun .= $price . '円 x';
 			$honbun .= $suryo . '個 =';
-			$honbun .= $shokei . '円 \n';
+			$honbun .= $shokei . "円 \n";
 		}
 
 		$dbh = null;
@@ -82,12 +82,14 @@ session_regenerate_id(true);
 		$honbun .= " 令和最新版⚡高品質茶葉";
 		$honbun .= "\n";
 		$honbun .= "ほわほわ県たわた郡1-21-312";
+		$honbun .= "\n";
 		$honbun .= "電話番号: 090-xxx-xxxx";
-		$honbun .= "メールアドレス: mmm@vvv.ccc";
-		$honbun .= "□□□□□□□□□□□□□□□□□\n";
+		$honbun .= "\n";
+		$honbun .= "メールアドレス: mmm@vvv.ccc \n";
+		$honbun .= "□□□□□□□□□□□□□□□□□ \n";
 
 		print '<br>';
-		print $honbun;
+		print nl2br($honbun);
 	} catch (Exception $e) {
 		print '<p>ただいま障害により大変ご迷惑をお掛けしております。</p>';
 		print $e . '<br>';
