@@ -40,8 +40,8 @@ session_regenerate_id(true);
 		$honbun .= "ご注文商品 \n";
 		$honbun .= "-----------------\n";
 
-		$cart[] = $_SESSION['cart'];
-		$kazu[] = $_SESSION['kazu'];
+		$cart = $_SESSION['cart'];
+		$kazu = $_SESSION['kazu'];
 		$max = count($cart);
 
 		$dsn = 'mysql:dbname=shop;host=localhost;charset=utf8';
@@ -51,7 +51,7 @@ session_regenerate_id(true);
 		$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 		for ($i = 0; $i < $max; $i++) {
-			$sql = 'SELECT name, price FROM mst_product WHERE code = ?';
+			$sql = 'SELECT name,price FROM mst_product WHERE code=?';
 			$stmt = $dbh->prepare($sql);
 			$data[0] = $cart[$i];
 			$stmt->execute($data);
@@ -60,6 +60,7 @@ session_regenerate_id(true);
 
 			$name = $rec['name'];
 			$price = $rec['price'];
+			$kakaku[] = $price;
 			$suryo = $kazu[$i];
 			$shokei = $price * $suryo;
 
@@ -69,8 +70,7 @@ session_regenerate_id(true);
 			$honbun .= $shokei . "円 \n";
 		}
 
-		$sql = 'INSERT INTO dat_sales(code_member, name, email, postal1, postal2, address, tel)
-		VALUES(?,?,?,?,?,?,?)';
+		$sql = 'INSERT INTO dat_sales (code_member,name,email,postal1,postal2,address,tel) VALUES (?,?,?,?,?,?,?)';
 		$stmt = $dbh->prepare($sql);
 		$data = array();
 		$data[] = 0;
@@ -81,6 +81,23 @@ session_regenerate_id(true);
 		$data[] = $address;
 		$data[] = $tel;
 		$stmt->execute($data);
+
+		$sql = 'SELECT LAST_INSERT_ID()';
+		$stmt = $dbh->prepare($sql);
+		$stmt->execute();
+		$rec = $stmt->fetch(PDO::FETCH_ASSOC);
+		$lastcode = $rec['LAST_INSERT_ID()'];
+
+		for ($i = 0; $i < $max; $i++) {
+			$sql = 'INSERT INTO dat_sales_product (code_sales,code_product,price,quantity) VALUES (?,?,?,?)';
+			$stmt = $dbh->prepare($sql);
+			$data = array();
+			$data[] = $lastcode;
+			$data[] = $cart[$i];
+			$data[] = $kakaku[$i];
+			$data[] = $kazu[$i];
+			$stmt->execute($data);
+		}
 
 		$dbh = null;
 
@@ -124,3 +141,5 @@ session_regenerate_id(true);
 	}
 	?>
 </body>
+
+</html>
